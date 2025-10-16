@@ -1,0 +1,6 @@
+@RecruitmentToDoApp_HostAddress = http://localhost:5081
+
+GET {{RecruitmentToDoApp_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
