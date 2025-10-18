@@ -1,0 +1,30 @@
+version: '3.4'
+
+services:
+  recruitmenttodoapp:
+    image: ${DOCKER_REGISTRY-}recruitmenttodoapp
+    container_name: recruitmenttodoapp
+    build:
+      context: .
+      dockerfile: RecruitmentToDoApp/Dockerfile
+    depends_on:
+      recruitmenttodoapp.database:
+        condition: service_healthy
+
+  recruitmenttodoapp.database:
+    image: mysql:8.0.43
+    container_name: recruitmenttodoapp.database
+    restart: always
+    volumes:
+      - .docker/init.sql:/docker-entrypoint-initdb.d/init.sql
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_USER: user
+      MYSQL_PASSWORD: user_password
+    ports:
+      - 3307:3306
+    healthcheck:
+        test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+        interval: 5s
+        timeout: 5s
+        retries: 5

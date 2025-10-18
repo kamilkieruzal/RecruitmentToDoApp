@@ -1,3 +1,7 @@
+using Microsoft.EntityFrameworkCore;
+using RecruitmentToDoApp.Exceptions;
+using RecruitmentToDoApp.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -6,8 +10,19 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddScoped<IToDoService, ToDoService>();
 
+var connectionString = builder.Configuration.GetConnectionString("ToDoDatabase") ??
+     throw new InvalidOperationException("Connection string ToDoDatabase not found");
+builder.Services.AddDbContext<IToDoAppContext, ToDoAppContext>(options => options.UseMySQL(connectionString));
 var app = builder.Build();
+
+//Ensure db is created
+using (var scope = app.Services.CreateScope())
+{
+    var dataContext = scope.ServiceProvider.GetRequiredService<ToDoAppContext>();
+    dataContext.Database.EnsureCreated();
+}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -21,5 +36,8 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+//Use global exception handler middleware
+app.UseMiddleware<GlobalExceptionHandler>();
 
 app.Run();
