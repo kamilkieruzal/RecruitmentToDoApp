@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.34916.146
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{0E919EDA-2BF8-41DB-8B36-322DF05AE157}"
+EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecruitmentToDoApp", "RecruitmentToDoApp\RecruitmentToDoApp.csproj", "{A8C9B9D2-DEC1-4365-9E9D-D11E950FBD6C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecruitmentToDoApp.Tests", "RecruitmentToDoApp.Tests\RecruitmentToDoApp.Tests.csproj", "{4655D750-CCDF-46DB-BF3F-28C12952D943}"
-EndProject
-Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{0E919EDA-2BF8-41DB-8B36-322DF05AE157}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
