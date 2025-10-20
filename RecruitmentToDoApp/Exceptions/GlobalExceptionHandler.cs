@@ -2,6 +2,7 @@
 
 namespace RecruitmentToDoApp.Exceptions
 {
+    // Global handler for not handled exceptions (e.g. in controller)
     internal sealed class GlobalExceptionHandler
     {
         private readonly RequestDelegate next;

@@ -21,8 +21,7 @@ namespace RecruitmentToDoApp.Services
             try
             {
                 await toDoAppContext.ToDos.AddAsync(toDo);
-                await toDoAppContext.SaveChangesAsync();
-                return true;
+                return await toDoAppContext.SaveChangesAsync() > 0;
             }
             catch (MySqlException ex)
             {
@@ -101,8 +100,7 @@ namespace RecruitmentToDoApp.Services
                 oldToDo.CompletePercentage = toDo.CompletePercentage;
                 oldToDo.Title = toDo.Title;
 
-                await toDoAppContext.SaveChangesAsync();
-                return true;
+                return await toDoAppContext.SaveChangesAsync() > 0;
             }
             catch (MySqlException ex)
             {
@@ -124,8 +122,7 @@ namespace RecruitmentToDoApp.Services
 
                 toDoAppContext.ToDos.Remove(toRemove);
 
-                await toDoAppContext.SaveChangesAsync();
-                return true;
+                return await toDoAppContext.SaveChangesAsync() > 0;
             }
             catch (MySqlException ex)
             {

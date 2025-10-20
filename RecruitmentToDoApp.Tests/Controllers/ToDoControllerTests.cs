@@ -104,13 +104,7 @@ namespace RecruitmentToDoApp.Tests.Controllers
         [Fact]
         public async void ToDoController_GetToDosAsync_Filtered_None()
         {
-            var toDos = TestData.GetFakeToDos();
-            var filter = new ToDoParams
-            {
-                MinExpiryDate = new DateTime(2030, 1, 1),
-                MaxExpiryDate = new DateTime(2035, 1, 1)
-            };
-
+            var filter = new ToDoParams();
             toDoServiceMock.GetToDosAsync(filter).Returns(new List<ToDo>());
 
             var result = await toDoController.GetToDosAsync(filter);
