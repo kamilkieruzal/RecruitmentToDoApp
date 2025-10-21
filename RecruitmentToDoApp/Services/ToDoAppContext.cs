@@ -10,9 +10,7 @@ namespace RecruitmentToDoApp.Services
         /// <summary>
         /// FOR TESTS ONLY
         /// </summary>
-        public ToDoAppContext()
-        {
-        }
+        public ToDoAppContext() { }
 
         public ToDoAppContext(DbContextOptions options): base(options)
         {

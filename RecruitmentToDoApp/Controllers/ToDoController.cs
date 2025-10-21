@@ -22,8 +22,10 @@ namespace RecruitmentToDoApp.Controllers
         public async Task<ActionResult<IList<ToDo>>> GetToDosAsync([FromQuery]ToDoParams filter)
         {
             var result = await toDoService.GetToDosAsync(filter);
+
             if (result == null)
                 return NotFound();
+
             return Ok(result);
         }
 
@@ -38,9 +40,7 @@ namespace RecruitmentToDoApp.Controllers
         public async Task<ActionResult> CreateToDoAsync(ToDo toDo)
         {
             if (!ModelState.IsValid)
-            {
                 return StatusCode(StatusCodes.Status400BadRequest, ModelState);
-            }
 
             var result = await toDoService.CreateToDoAsync(toDo);
 
@@ -51,9 +51,7 @@ namespace RecruitmentToDoApp.Controllers
         public async Task<ActionResult> UpdateToDoAsync([FromQuery] int id, ToDo toDo)
         {
             if (!ModelState.IsValid)
-            {
                 return StatusCode(StatusCodes.Status400BadRequest, ModelState);
-            }
 
             var result = await toDoService.UpdateToDoAsync(id, toDo);
             return result ? Ok() : BadRequest();

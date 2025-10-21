@@ -7,6 +7,7 @@ namespace RecruitmentToDoApp.Exceptions
     {
         private readonly RequestDelegate next;
         private readonly ILogger<GlobalExceptionHandler> logger;
+
         public GlobalExceptionHandler(RequestDelegate next, ILogger<GlobalExceptionHandler> logger)
         {
             this.next = next;
